@@ -5,13 +5,16 @@ var botID = process.env.BOT_ID;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^\/hot take$/;
-
-  console.log(request);
+      botRegex = /^\/hot take$/,
+      hotTakePrefix = "Hot take:";
 
   if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
     postMessage();
+    this.res.end();
+  } else if (request.text.startsWith(hotTakePrefix) {
+    this.res.writeHead(200);
+    postMessage(request.name, request.text);
     this.res.end();
   } else {
     console.log("don't care");
@@ -20,11 +23,15 @@ function respond() {
   }
 }
 
-function postMessage() {
+function postMessage(userName, text) {
   var botResponse, options, body, botReq;
-
-  botResponse = "Hello! I am the Hot Take Town Crier! Your one stop shop for the hottest takes in all the land!";
-
+  
+  if (userName && text) {
+    botResponse = "$$ HOT TAKE ALERT from: " + userName + "$$ -- " + text;
+  } else {
+    botResponse = "Hello! I am the Hot Take Town Crier! Your one stop shop for the hottest takes in all the land!";
+    botResponse += " To broadcast your hot take, simply prefix your message with 'Hot take:'";
+  }
 
   options = {
     hostname: 'api.groupme.com',
