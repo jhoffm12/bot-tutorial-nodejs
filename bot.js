@@ -15,7 +15,7 @@ function respond() {
     this.res.writeHead(200);
     postMessage();
     this.res.end();
-  } else if (request.text.startsWith(hotTakePrefix)) {
+  } else if (request.text.indexOf(hotTakePrefix) === 0) {
     this.res.writeHead(200);
     postMessage(request.name, request.text);
     this.res.end();
