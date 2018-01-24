@@ -30,7 +30,7 @@ function postMessage(userName, text) {
   var botResponse, options, body, botReq;
   
   if (userName && text) {
-    botResponse = "$$ HOT TAKE ALERT from: " + userName + "$$ -- " + text;
+    botResponse = "$$ HOT TAKE ALERT $$\nWho: " + userName + "\n" + "What: " + text.replace("Hot take:", "") ;
   } else {
     botResponse = "Hello! I am the Hot Take Town Crier! Your one stop shop for the hottest takes in all the land!";
     botResponse += " To broadcast your hot take, simply prefix your message with 'Hot take:'";
