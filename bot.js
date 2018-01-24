@@ -7,9 +7,6 @@ function respond() {
   var request = JSON.parse(this.req.chunks[0]),
       botRegex = /^\/hot take$/,
       hotTakePrefix = "Hot take:";
-  
-  console.log("Name:" + request.name);
-  console.log(request.text);
 
   if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
